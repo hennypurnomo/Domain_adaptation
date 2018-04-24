@@ -2,6 +2,7 @@
 
 import sys, time
 import numpy as np
+import cv2
 
 class dataSet:
     def __init__(self):
@@ -22,7 +23,7 @@ class dataSet:
         process_bar = ShowProcess(len(self.data)-1)
         for i in range(1, len(self.data)):
             data = np.r_[data, self.data[i].reshape(1, result)]
-            process_bar.show_process()
+            # process_bar.show_process()
         process_bar.close()
         self.data = data
         self.label = np.array(self.label)
@@ -37,28 +38,14 @@ class ShowProcess():
         self.max_steps = max_steps
         self.i = 0
 
-    def show_process(self, i=None):
-        if i is not None:
-            self.i = i
-        else:
-            self.i += 1
-        num_arrow = int(self.i * self.max_arrow / self.max_steps)
-        num_line = self.max_arrow - num_arrow
-        percent = self.i * 100.0 / self.max_steps
-        process_bar = '[' + '>' * num_arrow + '-' * num_line + ']'\
-                      + '%.2f' % percent + '%' + '\r'
-        sys.stdout.write(process_bar)
-        sys.stdout.flush()
-
     def close(self, words='done'):
-        print ('')
-        print (words)
+        # print ('')
+        # print (words)
         self.i = 0
 
 if __name__ == '__main__':
-    import cv2
-    image_data = cv2.imread('./Original_images/amazon/images/back_pack/frame_0001.jpg')
-    #print (image_data)
+    image_data = cv2.imread('./Original_images/amazon/images/ruler/frame_0001.jpg')
+    # print (image_data)
     labels = {'printer': 21, 
               'projector': 22, 
               'file_cabinet': 9, 
@@ -93,10 +80,10 @@ if __name__ == '__main__':
     
      
     test = dataSet()
-    test.upData(image_data, labels['back_pack'], labels)
-    test.upData(image_data, labels['back_pack'], labels)
-    test.upData(image_data, labels['back_pack'], labels)
-    test.upData(image_data, labels['back_pack'], labels)
+    test.upData(image_data, labels['ruler'], labels)
+    test.upData(image_data, labels['ruler'], labels)
+    test.upData(image_data, labels['ruler'], labels)
+    test.upData(image_data, labels['ruler'], labels)
     test.sHape()
-    print(test.data.shape)
-    print(test.label.shape)
+    # print(test.data.shape)
+    # print(test.label.shape)
