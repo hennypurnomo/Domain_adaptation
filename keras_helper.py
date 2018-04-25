@@ -1,4 +1,4 @@
-# this main code by Ssamot from https://github.com/ssamot/infoGA/blob/master/keras_helper.py
+# this code by Ssamot from https://github.com/ssamot/infoGA/blob/master/keras_helper.py
 
 import keras.backend as K
 import numpy as np
